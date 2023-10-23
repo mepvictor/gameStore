@@ -1,6 +1,7 @@
 package br.com.gamestore.gamestore.controllers;
 
 import br.com.gamestore.gamestore.resourceItems.UserResourceItem;
+import br.com.gamestore.gamestore.resourceItems.UserResponseItem;
 import br.com.gamestore.gamestore.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class UserController {
 
     @GetMapping(value = "/login")
     public ResponseEntity<?> login(@RequestBody UserResourceItem userResourceItem){
-        userService.findByUser(userResourceItem);
-        return ResponseEntity.ok("{deu bão}");
+        UserResponseItem userItem =  userService.findByUser(userResourceItem);
+        return ResponseEntity.ok(userItem);
     }
 }
