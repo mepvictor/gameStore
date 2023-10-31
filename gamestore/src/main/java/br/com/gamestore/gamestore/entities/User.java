@@ -28,8 +28,7 @@ public class User implements Serializable {
     @Column(name = "user_pass")
     private String password;
 
-    @OneToMany
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @OneToMany(mappedBy = "user")
     private List<Purchase> purchases;
 
     public User() {

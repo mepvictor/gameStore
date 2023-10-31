@@ -6,9 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.List;
 
 @Entity
 @Table(name = "tb_purchase_product")
@@ -17,39 +16,48 @@ public class PurchaseProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "purchase_product_id")
-    private Integer purchaseProductId;
+    private Integer id;
 
+    @ManyToOne
     @JoinColumn(name = "purchase_id")
-    private Integer purchaseId;
+    private Purchase purchase;
 
+    @ManyToOne
     @JoinColumn(name = "product_id")
-    private Integer productId;
+    private Product product;
 
-    @ManyToMany
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
-    private List<Product> products;
+    @Column(name = "product_quantity")
+    private int quantity;
 
-    public Integer getPurchaseProductId() {
-        return purchaseProductId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPurchaseProductId(Integer purchaseProductId) {
-        this.purchaseProductId = purchaseProductId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getPurchaseId() {
-        return purchaseId;
+    public Purchase getPurchase() {
+        return purchase;
     }
 
-    public void setPurchaseId(Integer purchaseId) {
-        this.purchaseId = purchaseId;
+    public void setPurchase(Purchase purchase) {
+        this.purchase = purchase;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

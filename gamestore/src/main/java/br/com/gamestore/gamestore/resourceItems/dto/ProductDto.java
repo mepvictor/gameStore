@@ -1,32 +1,19 @@
-package br.com.gamestore.gamestore.entities;
+package br.com.gamestore.gamestore.resourceItems.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.io.Serializable;
+import br.com.gamestore.gamestore.entities.Product;
 
-@Entity
-@Table(name = "tb_product")
-public class Product implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
+public class ProductDto {
     private Integer id;
-
-    @Column(name = "product_name")
     private String productName;
-
-    @Column(name = "product_price")
+    private String productDesc;
     private Double productPrice;
 
-    @Column(name = "product_desc")
-    private String productDesc;
 
-    public Product() {
+    public ProductDto(Product product) {
+        this.id = product.getId();
+        this.productName = product.getProductName();
+        this.productDesc = product.getProductDesc();
+        this.productPrice = product.getProductPrice();
     }
 
     public Integer getId() {

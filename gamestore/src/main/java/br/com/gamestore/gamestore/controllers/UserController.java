@@ -1,7 +1,8 @@
 package br.com.gamestore.gamestore.controllers;
 
-import br.com.gamestore.gamestore.resourceItems.UserResourceItem;
-import br.com.gamestore.gamestore.resourceItems.UserResponseItem;
+import br.com.gamestore.gamestore.entities.User;
+import br.com.gamestore.gamestore.resourceItems.LoginFormResorceItem;
+import br.com.gamestore.gamestore.resourceItems.dto.UserDto;
 import br.com.gamestore.gamestore.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping(value = "/login")
-    public ResponseEntity<?> login(@RequestBody UserResourceItem userResourceItem){
-        UserResponseItem userItem =  userService.findByUser(userResourceItem);
+    public ResponseEntity<?> login(@RequestBody LoginFormResorceItem loginForm) throws Throwable {
+        UserDto userItem =  userService.findByUser(loginForm);
         return ResponseEntity.ok(userItem);
     }
 }
