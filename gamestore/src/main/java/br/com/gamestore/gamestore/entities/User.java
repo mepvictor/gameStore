@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -28,8 +27,7 @@ public class User implements Serializable {
     @Column(name = "user_pass")
     private String password;
 
-    @OneToMany
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @OneToMany(mappedBy = "user")
     private List<Purchase> purchases;
 
     public User() {

@@ -1,21 +1,8 @@
 package br.com.gamestore.gamestore.resourceItems;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.istack.NotNull;
-
-
-public class UserResourceItem {
-
-    @NotNull
-    @JsonProperty("username")
+public class LoginFormResorceItem {
     private String username;
-
-    @NotNull
-    @JsonProperty("password")
     private String password;
-
-    public UserResourceItem() {
-    }
 
     public String getUsername() {
         return username;

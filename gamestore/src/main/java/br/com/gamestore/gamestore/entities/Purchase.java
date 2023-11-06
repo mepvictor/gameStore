@@ -6,8 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
@@ -25,12 +24,14 @@ public class Purchase {
     @Column(name = "user_id")
     private Integer userId;
 
+    @ManyToOne
+    private User user;
+
     @Column(name = "purchase_date")
     private LocalDateTime purchaseDate;
 
-    @ManyToMany
-    @JoinColumn(name = "purchase_id", referencedColumnName = "purchase_id")
-    private List<PurchaseProduct> products;
+    @OneToMany(mappedBy = "purchase")
+    private List<PurchaseProduct> purchaseProducts;;
 
     public Purchase() {
     }
@@ -43,16 +44,16 @@ public class Purchase {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public LocalDateTime getPurchaseDate() {
         return purchaseDate;
+    }
+
+    public List<PurchaseProduct> getPurchaseProducts() {
+        return purchaseProducts;
+    }
+
+    public void setPurchaseProducts(List<PurchaseProduct> purchaseProducts) {
+        this.purchaseProducts = purchaseProducts;
     }
 
     public void setPurchaseDate(LocalDateTime purchaseDate) {
