@@ -11,7 +11,7 @@ export default function CardProduct ({ handleChange, products }) {
                 <h1>{p.name}</h1>
                 <img src={p.image} alt={p.description} width={100} height={100} />
                 <h4>{p.description}</h4>
-                <Button variant="contained" onClick={() => handleChange()}>Alterar</Button>
+                <Button variant="contained" onClick={() => handleChange(p)}>Alterar</Button>
             </Card>
 
         ))}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,43 +12,12 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import AddIcon from '@mui/icons-material/Add';
-import PersonIcon from '@mui/icons-material/Person';
-import CardProduct from '../CardProduct';
+import HomeIcon from '@mui/icons-material/Home';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const drawerWidth = 240;
 
-export default function DrawerPrincipal () {
-
-    const [ products, setProducts ] = useState([ 
-        {
-            name: 'Computador',
-            description: 'Esse é um computador de última geração',
-            price: 2500,
-            image: 'https://media.gettyimages.com/id/1240444255/pt/foto/a-general-view-of-the-uefa-champions-league-trophy-ahead-of-the-uefa-champions-league-semi.jpg?s=612x612&w=gi&k=20&c=GwLZiLHbRCzn0BilNlJaGsfNGnPsehFDbUhgYM3lXUo='
-        },
-        {
-          name: 'Vídeo game',
-          description: 'Testando apenas',
-          price: 2500,
-          image: 'https://media.gettyimages.com/id/1240444255/pt/foto/a-general-view-of-the-uefa-champions-league-trophy-ahead-of-the-uefa-champions-league-semi.jpg?s=612x612&w=gi&k=20&c=GwLZiLHbRCzn0BilNlJaGsfNGnPsehFDbUhgYM3lXUo='
-        },
-        {
-          name: 'Vídeo game',
-          description: 'Testando apenas',
-          price: 2500,
-          image: 'https://media.gettyimages.com/id/1240444255/pt/foto/a-general-view-of-the-uefa-champions-league-trophy-ahead-of-the-uefa-champions-league-semi.jpg?s=612x612&w=gi&k=20&c=GwLZiLHbRCzn0BilNlJaGsfNGnPsehFDbUhgYM3lXUo='
-        }
-     ])  
-
-     const handleChange = () => {
-      window.location.href = '/admin/alteracao'
-     }
-
-     const renderProducts = () => {
-        if (products && products.length > 0) {
-            return <CardProduct handleChange={handleChange} products={products} />
-        }
-     }
+export default function DrawerPrincipal ({ content }) {
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -78,23 +47,32 @@ export default function DrawerPrincipal () {
         <Toolbar />
         <Divider />
         <List>
-            <ListItem key='1' disablePadding>
-              <ListItemButton Button to='/admin/cadastro'>
-                <ListItemIcon>
-                    <AddIcon />
-                </ListItemIcon>
-                <ListItemText primary='Cadastrar' />
-              </ListItemButton>
-            </ListItem>
+          <ListItem key='1' disablePadding>
+            <ListItemButton Button to='/admin/produtos'>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary='Produtos' />
+            </ListItemButton>
+          </ListItem>
 
-            <ListItem key='2' disablePadding>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <PersonIcon />
-                    </ListItemIcon>
-                    <ListItemText primary='Sair' />
-                </ListItemButton>
-            </ListItem>
+          <ListItem key='2' disablePadding>
+            <ListItemButton Button to='/admin/cadastrar'>
+              <ListItemIcon>
+                <AddIcon />
+              </ListItemIcon>
+              <ListItemText primary='Cadastrar' />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem key='3' disablePadding>
+            <ListItemButton to='/admin/login'>
+              <ListItemIcon>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText primary='Sair' />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
       <Box
@@ -104,8 +82,7 @@ export default function DrawerPrincipal () {
       >
         <Toolbar />
         <Typography>
-          <h1 style={{ textAlign: 'center' }}>Produtos</h1>
-          {renderProducts()}
+          {content}
         </Typography>
       </Box>
     </Box>

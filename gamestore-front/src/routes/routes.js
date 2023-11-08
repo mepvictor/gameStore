@@ -1,39 +1,35 @@
 import {
     createBrowserRouter,
     RouterProvider,
-  } from "react-router-dom";
-  import Login from "../admin/login";
-  import Principal from '../admin/principal'
-  import Cadastro from '../admin/cadastro'
-  import Alteracao from '../admin/alteracao'
+} from "react-router-dom";
+import Login from "../admin/Login";
+import Principal from "../admin//Home";
+import Alterar from "../admin//Alterar";
+import Cadastrar from "../admin/Cadastrar";
+import Listar from "../admin/ListarProdutos";
 
-  const router = createBrowserRouter([
+const router = createBrowserRouter([
     {
         path: "/admin/login",
         element: <Login />
     },
     {
-        path: "/admin/principal",
-        element: <Principal />
+        path: "/admin/alterar/:id",
+        element: <Alterar />
     },
     {
-        path: "/admin/cadastro",
-        element: <Cadastro />
+        path: "/admin/cadastrar",
+        element: <Cadastrar />
     },
     {
-        path: "/admin/alteracao",
-        element: <Alteracao />
-    },
-    {
-        path: "/",
-        element: 'Aqui vai ser o site principal, onde irá comprar'
+        path: "/admin/produtos",
+        element: <Listar />
     }
-  ]);
+]);
 
-  const Rota = () => {
-    return (
-        <RouterProvider router={router} />
-    )
-  }
 
-  export default Rota
+const Rota = () => {
+    return <RouterProvider router={router} />
+}
+
+export default Rota
