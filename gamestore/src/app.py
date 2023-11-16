@@ -39,7 +39,9 @@ def cadastrar_produto():
     produto = {
         'product_name': data['product_name'],
         'product_desc': data['product_desc'],
-        'product_price': data['product_price']
+        'product_price': data['product_price'],
+        'product_image': data['product_image']
+
     }
     produto_inserido = mongo.db.produtos.insert_one(produto)
     return jsonify({'message': 'Produto cadastrado com sucesso', 'product_id': str(produto_inserido.inserted_id)}), 201
@@ -52,7 +54,8 @@ def alterar_produto(product_id):
     produto_atualizado = {
         'product_name': data['product_name'],
         'product_desc': data['product_desc'],
-        'product_price': data['product_price']
+        'product_price': data['product_price'],
+        'product_image': data['product_image']
     }
     mongo.db.produtos.update_one({'_id': ObjectId(product_id)}, {'$set': produto_atualizado})
     return jsonify({'message': 'Produto alterado com sucesso'}), 200
