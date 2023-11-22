@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react'
 import Button from '@mui/material/Button'
 import { Grid } from '@mui/material';
-import InputAdmin from '../components/InputAdmin';
+import InputAdmin from '../../components/InputAdmin';
 import { useParams } from "react-router-dom";
-import DrawerPrincipal from '../components/DrawerAdmin';
+import DrawerPrincipal from '../../components/DrawerAdmin';
 const Alterar = () => {
     const [name, setName] = useState('')
     const { id } = useParams();

@@ -12,7 +12,7 @@ const Login = () => {
 
 
       const handleLogin = () => {
-        window.location.href = '/admin/principal'
+        window.location.href = '/admin/produtos'
       }
 
   return (

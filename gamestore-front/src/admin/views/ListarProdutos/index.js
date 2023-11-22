@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import CardProduct from '../components/CardProduct';
-import LoadingAdmin from '../components/Loading'
-import DrawerPrincipal from '../components/DrawerAdmin';
+import CardProduct from '../../components/CardProduct';
+import LoadingAdmin from '../../components/Loading'
+import DrawerPrincipal from '../../components/DrawerAdmin';
 const Listar = () => {
   const [loading, setLoading] = useState(false)
   const [products, setProducts] = useState([

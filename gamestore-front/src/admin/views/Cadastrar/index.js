@@ -2,8 +2,8 @@
 import React, { useState } from 'react'
 import Button from '@mui/material/Button'
 import { Grid } from '@mui/material';
-import InputAdmin from '../components/InputAdmin';
-import DrawerPrincipal from '../components/DrawerAdmin';
+import InputAdmin from '../../components/InputAdmin';
+import DrawerPrincipal from '../../components/DrawerAdmin';
 const Cadastrar = () => {
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')

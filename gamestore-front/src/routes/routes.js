@@ -2,29 +2,39 @@ import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
-import Login from "../admin/Login";
-import Principal from "../admin//Home";
-import Alterar from "../admin//Alterar";
-import Cadastrar from "../admin/Cadastrar";
-import Listar from "../admin/ListarProdutos";
+import LoginAdmin from "../admin/views/Login";
+import AlterarAdmin from "../admin/views/Alterar";
+import CadastrarAdmin from "../admin/views/Cadastrar";
+import ListarAdmin from "../admin/views/ListarProdutos";
+import LoginSite from '../site/views/Login'
+import HomeSite from '../site/views/Home'
 
 const router = createBrowserRouter([
     {
         path: "/admin/login",
-        element: <Login />
+        element: <LoginAdmin />
     },
     {
         path: "/admin/alterar/:id",
-        element: <Alterar />
+        element: <AlterarAdmin />
     },
     {
         path: "/admin/cadastrar",
-        element: <Cadastrar />
+        element: <CadastrarAdmin />
     },
     {
         path: "/admin/produtos",
-        element: <Listar />
+        element: <ListarAdmin />
+    },
+    {
+        path: "/login",
+        element: <LoginSite /> 
+    },
+    {
+        path: "/",
+        element: <HomeSite /> 
     }
+    
 ]);
 
 
