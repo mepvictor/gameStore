@@ -12,6 +12,7 @@ const Login = () => {
 
 
       const handleLogin = () => {
+        sessionStorage.setItem("tokenAdmin", JSON.stringify('tokenAdmin'))
         window.location.href = '/admin/produtos'
       }
 

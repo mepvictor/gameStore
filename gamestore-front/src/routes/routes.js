@@ -8,6 +8,20 @@ import CadastrarAdmin from "../admin/views/Cadastrar";
 import ListarAdmin from "../admin/views/ListarProdutos";
 import LoginSite from '../site/views/Login'
 import HomeSite from '../site/views/Home'
+import MyAccount from "../site/views/MyAccount";
+import ProductDetail from "../site/views/ProductDetail";
+import HistoricoVendas from "../admin/views/HistoricoVendas";
+import ShoppingCart from "../site/views/ShoppingCart";
+
+const isAuth = () => {
+    var isValid = sessionStorage.getItem("tokenAdmin");
+    return !!isValid
+}
+
+const isAuthSite = () => {
+    var isValid = sessionStorage.getItem("tokenSite");
+    return !!isValid
+}
 
 const router = createBrowserRouter([
     {
@@ -16,15 +30,19 @@ const router = createBrowserRouter([
     },
     {
         path: "/admin/alterar/:id",
-        element: <AlterarAdmin />
+        element: isAuth() ? <AlterarAdmin /> : 'Não é possível acessar aqui!'
     },
     {
         path: "/admin/cadastrar",
-        element: <CadastrarAdmin />
+        element: isAuth() ? <CadastrarAdmin /> : 'Não é possível acessar aqui!'
     },
     {
         path: "/admin/produtos",
-        element: <ListarAdmin />
+        element: isAuth() ? <ListarAdmin /> : 'Não é possível acessar aqui!'
+    },
+    {
+        path: "/admin/historico-vendas",
+        element: isAuth() ? <HistoricoVendas /> : 'Não é possível acessar aqui!'
     },
     {
         path: "/login",
@@ -33,8 +51,19 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <HomeSite /> 
+    },
+    {
+        path: "/myaccount",
+        element: isAuthSite() ? <MyAccount /> : 'Faça login para acessar aqui!'
+    },
+    {
+        path: "/product/:id",
+        element: <ProductDetail />
+    },
+    {
+        path: "/cart",
+        element: isAuthSite() ? <ShoppingCart /> : 'Faça login para acessar aqui!'
     }
-    
 ]);
 
 

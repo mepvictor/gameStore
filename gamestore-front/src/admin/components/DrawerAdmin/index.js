@@ -14,6 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import AddIcon from '@mui/icons-material/Add';
 import HomeIcon from '@mui/icons-material/Home';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 
 const drawerWidth = 240;
 
@@ -65,8 +66,17 @@ export default function DrawerPrincipal ({ content }) {
             </ListItemButton>
           </ListItem>
 
+          <ListItem key='2' disablePadding>
+            <ListItemButton Button to='/admin/historico-vendas'>
+              <ListItemIcon>
+                <LibraryBooksIcon />
+              </ListItemIcon>
+              <ListItemText primary='Histórico de vendas' />
+            </ListItemButton>
+          </ListItem>
+
           <ListItem key='3' disablePadding>
-            <ListItemButton to='/admin/login'>
+            <ListItemButton onClick={() => sessionStorage.removeItem('tokenAdmin')} to='/admin/login'>
               <ListItemIcon>
                 <ExitToAppIcon />
               </ListItemIcon>

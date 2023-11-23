@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button'
 import { Grid, Card } from '@mui/material';
 
-export default function CardProduct ({ handleChange, products }) {
+export default function CardProduct ({ handleChange, products, handleDelete }) {
 
   return (
     <Grid container style={{ display: 'flex', justifyContent: 'flex-start'}}>
@@ -12,6 +12,7 @@ export default function CardProduct ({ handleChange, products }) {
                 <img src={p.image} alt={p.description} width={100} height={100} />
                 <h4>{p.description}</h4>
                 <Button variant="contained" onClick={() => handleChange(p)}>Alterar</Button>
+                <Button variant="text" onClick={() => handleDelete(p)} style={{ marginTop: 15 }}>Deletar</Button>
             </Card>
 
         ))}

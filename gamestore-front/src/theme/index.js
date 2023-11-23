@@ -8,5 +8,8 @@ export const themeSite = createTheme({
     secondary: {
       main: '#f15a28',
     },
+    white: {
+      main: '#fff'
+    }
     }
 });

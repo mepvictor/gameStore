@@ -28,10 +28,9 @@ const Listar = () => {
     }
   ])
 
-  useEffect(() => {
-    console.log('teste')
-  }, [])
-
+  const handleDelete = (value) => {
+    console.log(value)
+  }
 
   const handleChange = (value) => {
     console.log(value)
@@ -45,7 +44,7 @@ const Listar = () => {
 
   const renderProducts = () => {
     if (products && products.length > 0) {
-      return <CardProduct handleChange={handleChange} products={products} />
+      return <CardProduct handleChange={handleChange} products={products} handleDelete={handleDelete} />
     }
   }
 
