@@ -6,24 +6,28 @@ app = Flask(__name__)
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/gamestoredb'
 mongo = PyMongo(app)
 
-@app.route('/api/login', methods=['POST'])
+@app.route('/api/login', methods=['GET'])
 def login():
     data = request.get_json()
     username = data.get('username')
-    password = data.get('password')
-    user = mongo.db.usuarios.find_one({'username': username, 'senha': password})
+    senha = data.get('senha')
+    user = mongo.db.usuarios.find_one({'username': username, 'senha': senha})
     if user:
         return jsonify({'message': 'Login bem-sucedido'}), 200
     else:
         return jsonify({'message': 'Credenciais inválidas'}), 401
 
-@app.route('/api/usuarios', methods=['GET'])
-def get_usuarios():
-    usuarios_cursor = mongo.db.usuarios.find()
-    usuarios = list(usuarios_cursor)
-    json_usuarios = json_util.dumps(usuarios)
-    return json_usuarios, 200, {'Content-Type': 'application/json'}
-
+@app.route('/api/admin/login', methods=['GET'])
+def login_admin():
+    data = request.get_json()
+    username = data['username']
+    senha = data['senha']
+    user = mongo.db.usuariosadmin.find_one({'username': username, 'senha': senha})
+    if user:
+        return jsonify({'message': 'Login bem-sucedido'}), 200
+    else:
+        return jsonify({'message': 'Credenciais inválidas'}), 401
+    
 @app.route('/api/produtos', methods=['GET'])
 def get_produtos():
     produtos_cursor = mongo.db.produtos.find()
