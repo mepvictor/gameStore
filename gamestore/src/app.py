@@ -1,10 +1,12 @@
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
-from bson import json_util, ObjectId 
+from bson import json_util, ObjectId
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/gamestoredb'
 mongo = PyMongo(app)
+CORS(app)
 
 @app.route('/api/login', methods=['GET'])
 def login():
@@ -17,7 +19,7 @@ def login():
     else:
         return jsonify({'message': 'Credenciais inválidas'}), 401
 
-@app.route('/api/admin/login', methods=['GET'])
+@app.route('/api/admin/login', methods=['POST'])
 def login_admin():
     data = request.get_json()
     username = data['username']

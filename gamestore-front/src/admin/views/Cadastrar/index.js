@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react'
+import axios from 'axios'
 import Button from '@mui/material/Button'
 import { Grid } from '@mui/material';
 import InputAdmin from '../../components/InputAdmin';
@@ -10,11 +11,15 @@ const Cadastrar = () => {
     const [description, setDescription] = useState('')
     const [image, setImage] = useState('')
 
-    const handleRegister = () => {
-        console.log(name)
-        console.log(price)
-        console.log(description)
-        console.log(image)
+    const handleRegister = async () => {
+        try {
+            const res = await axios.post(`http://127.0.0.1:5000/api/produtos`, {product_name: name, product_desc: description, product_price: price, product_image: image})
+            if (res) {
+                window.location.href = '/admin/produtos'
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const renderContent = () => {

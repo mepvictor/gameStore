@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import Button from '@mui/material/Button'
 import { Grid } from '@mui/material';
 import InputAdmin from '../../components/InputAdmin';
@@ -12,17 +13,29 @@ const Alterar = () => {
     const [description, setDescription] = useState('')
     const [image, setImage] = useState('')
 
-    const handleRegister = () => {
-        console.log(name)
-        console.log(price)
-        console.log(description)
-        console.log(image)
+    const handleRegister = async () => {
+        try {
+            const res = await axios.put(`http://127.0.0.1:5000/api/produtos/${id}`, { product_name: name, product_desc: description, product_price: price, product_image: image })
+            if (res) {
+                window.location.href = '/admin/produtos'
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
-
+    
     useEffect(() => {
-        console.log(id)
+        getProductDetails();
     }, [])
 
+
+    const getProductDetails = async () => {
+        const res = await axios.get(`http://127.0.0.1:5000/api/produtos/${id}`)
+        setPrice(res.data.product_price);
+        setImage(res.data.product_image);
+        setDescription(res.data.product_desc);
+        setName(res.data.product_name);
+    }
 
     const renderContent = () => {
         return (
@@ -31,29 +44,29 @@ const Alterar = () => {
                 <Grid container direction="row" style={{ marginTop: 30 }}>
                     <Grid item lg={3}>
                         <InputAdmin
+                            value={name}
                             label='Nome'
-                            placeholder='Insira o nome do produto'
                             setText={setName}
                         />
                     </Grid>
                     <Grid item lg={3}>
                         <InputAdmin
+                            value={description}
                             label='Descrição'
-                            placeholder='Insira a descrição do produto'
                             setText={setDescription}
                         />
                     </Grid>
                     <Grid item lg={3}>
                         <InputAdmin
+                            value={price}
                             label='Preço'
-                            placeholder='Insira o preço do produto'
                             setText={setPrice}
                         />
                     </Grid>
                     <Grid item lg={3}>
                         <InputAdmin
+                            value={image}
                             label='Imagem'
-                            placeholder='Insira o link da imagem do produto'
                             setText={setImage}
                         />
                     </Grid>
@@ -65,7 +78,7 @@ const Alterar = () => {
         )
     }
 
-    return <DrawerPrincipal  content={renderContent()} />
+    return <DrawerPrincipal content={renderContent()} />
 }
 
 export default Alterar

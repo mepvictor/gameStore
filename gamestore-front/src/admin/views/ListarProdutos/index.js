@@ -1,40 +1,35 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import CardProduct from '../../components/CardProduct';
 import LoadingAdmin from '../../components/Loading'
 import DrawerPrincipal from '../../components/DrawerAdmin';
 const Listar = () => {
   const [loading, setLoading] = useState(false)
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: 'Computador',
-      description: 'Esse é um computador de última geração',
-      price: 2500,
-      image: 'https://media.gettyimages.com/id/1240444255/pt/foto/a-general-view-of-the-uefa-champions-league-trophy-ahead-of-the-uefa-champions-league-semi.jpg?s=612x612&w=gi&k=20&c=GwLZiLHbRCzn0BilNlJaGsfNGnPsehFDbUhgYM3lXUo='
-    },
-    {
-      id: 2,
-      name: 'Vídeo game',
-      description: 'Testando apenas',
-      price: 2500,
-      image: 'https://media.gettyimages.com/id/1240444255/pt/foto/a-general-view-of-the-uefa-champions-league-trophy-ahead-of-the-uefa-champions-league-semi.jpg?s=612x612&w=gi&k=20&c=GwLZiLHbRCzn0BilNlJaGsfNGnPsehFDbUhgYM3lXUo='
-    },
-    {
-      id: 3,
-      name: 'Vídeo game',
-      description: 'Testando apenas',
-      price: 2500,
-      image: 'https://media.gettyimages.com/id/1240444255/pt/foto/a-general-view-of-the-uefa-champions-league-trophy-ahead-of-the-uefa-champions-league-semi.jpg?s=612x612&w=gi&k=20&c=GwLZiLHbRCzn0BilNlJaGsfNGnPsehFDbUhgYM3lXUo='
-    }
-  ])
+  const [products, setProducts] = useState([])
 
-  const handleDelete = (value) => {
-    console.log(value)
+
+  useEffect(() => {
+    getProducts()
+}, [])
+
+  const getProducts = async ()=>{
+    const res = await axios.get(`http://127.0.0.1:5000/api/produtos`)
+    setProducts(res.data);
+  }
+
+  const handleDelete = async (value) => {
+    try {
+      const res = await axios.delete(`http://127.0.0.1:5000/api/produtos/${value._id.$oid}`)
+      if (res) {
+        window.location.href = '/admin/produtos'
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const handleChange = (value) => {
-    console.log(value)
-    window.location.href = `/admin/alterar/${value.id}`
+    window.location.href = `/admin/alterar/${value._id.$oid}`
   }
 
   const renderContent = () => {

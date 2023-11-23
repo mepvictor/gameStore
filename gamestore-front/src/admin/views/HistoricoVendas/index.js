@@ -6,7 +6,7 @@ const HistoricoVendas = () => {
         return (
             <>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
-                    <span style={{ fontSize: 46, color: '#000' }}>Histórico de compras</span>
+                    <span style={{ fontSize: 46, color: '#000' }}>Histórico de Vendas</span>
                 </div>
            
                 <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexDirection: 'row', 
