@@ -9,12 +9,12 @@ export default function CardProducts ({ handleDetail, products }) {
         {products.map((p, i) => (
             <Card sx={{ width: 100, height: 220 }} key={i} style={{ display: 'flex', flex: 1, flexDirection: 'row', textAlign: 'center', alignItems: 'center', backgroundColor: '#FFF', padding: '0px 50px', borderRadius: 5, margin: 15}}>
                 <div style={{  marginLeft: -30}}>
-                  <img src={p.image} alt={p.description} width={120} height={120} />
+                  <img src={p.product_image} alt={p.product_desc} width={120} height={120} />
                 </div>
                 <div style={{  display: 'flex', marginLeft: 50 , flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontSize: 18, color: '#181818' }}>{p.name}</span>
-                  <span style={{ fontSize: 30, fontWeight: 'bold', color: '#181818', marginTop: 20 }}>R$ {p.price}</span>
-                  <Button variant="contained" color='secondary' style={{ marginTop: 20 }} onClick={() => handleDetail(p)}>Ver detalhes</Button>
+                  <span style={{ fontSize: 18, color: '#181818' }}>{p.product_name}</span>
+                  <span style={{ fontSize: 30, fontWeight: 'bold', color: '#181818', marginTop: 20 }}>R$ {p.product_price}</span>
+                  <Button variant="contained" color='secondary' style={{ marginTop: 20 }} onClick={() => handleDetail(p._id.$oid)}>Ver detalhes</Button>
                 </div>  
             </Card>
 

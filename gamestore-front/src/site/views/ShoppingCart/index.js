@@ -52,9 +52,9 @@ const ShoppingCart = () => {
                     {console.log(itensCarrinho)}
                     {itensCarrinho?.length !== 0 && itensCarrinho?.map((value, i) => (
                         <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexDirection: 'row', width: '100%', marginTop: 35, borderRadius: 5, fontSize: 20, fontWeight: 'bold'  }}>
-                            <img src={value.image} alt={value.description} width={50} height={50} />
-                            <span>{value.name}</span>     
-                            <span style={{ color: '#f15a28'}}>R$ {value.price}</span>  
+                            <img src={value.product.image} alt={value.product.description} width={50} height={50} />
+                            <span>{value.product.name}</span>     
+                            <span style={{ color: '#f15a28'}}>R$ {value.product.price}</span>  
                             <Button variant="contained" onClick={() => handleRemoveItem(value)}>Remover</Button>  
                         </div>
                     ))}

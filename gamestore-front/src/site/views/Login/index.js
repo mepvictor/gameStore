@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import InputLogin from '../../components/Input'
 import ButtonLogin from '../../components/Button'
 const Login = () => {
   const [user, setUser] = useState()
   const [password, setPassword] = useState()
 
-  useEffect(() => {
-    console.log(user)
-    console.log(password)
-  }, [user, password])
+  const handleLogin = async () => {
+    try {
 
+      const res = await axios.post(`http://127.0.0.1:5000/api/login`, { username: user, senha: password })
 
-  const handleLogin = () => {
-    sessionStorage.setItem("tokenSite", JSON.stringify('tokenSite'));
-    window.location.href = '/'
+      if (res) {
+
+        sessionStorage.setItem("tokenSite", JSON.stringify('tokenSite'));
+        window.location.href = '/'
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   return (
