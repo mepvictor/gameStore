@@ -36,7 +36,7 @@ const GamesList = () => {
         <ThemeProvider theme={themeSite}>
             <div style={{ display: 'flex', justifyContent: 'space-around', flexDirection: 'row', marginTop: 30, alignItems: 'center' }}>
                 {list.map((l, i) => (
-                    <Button variant="text" style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+                    <Button key={i} variant="text" style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
                         {l.icon}
                         <span style={{ fontSize: 14, color: '#FFF' }}>
                             {l.name}

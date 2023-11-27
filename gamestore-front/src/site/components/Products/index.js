@@ -6,7 +6,6 @@ import CardProducts from '../CardProducts';
 
 const Products = () => {
 
-
   const [products, setProducts] = useState([])
 
   useEffect(() => {
@@ -14,9 +13,13 @@ const Products = () => {
   }, [])
 
   const getProducts = async () => {
-    const res = await axios.get(`http://127.0.0.1:5000/api/produtos`)
-    setProducts(res.data);
-    console.log(res.data);
+    try {
+      const res = await axios.get(`http://127.0.0.1:5000/api/produtos`)
+      setProducts(res.data);
+    } catch (error) {
+      console.log(error)
+    }
+    
   }
 
   const handleDetail = (value) => {
@@ -29,6 +32,7 @@ const Products = () => {
     if (products && products.length > 0) {
       return <CardProducts handleDetail={handleDetail} products={products} />
     }
+    return <span style={{ marginTop: 30, color: '#FFF', fontSize: 22 }}>Nenhum produto encontrado :(</span>
   }
 
   return (
@@ -37,7 +41,6 @@ const Products = () => {
       <div style={{ borderTop: '1px solid #f15a28', display: 'flex', justifyContent: 'center' }}>
         {renderProducts()}
       </div>
-
     </ThemeProvider>
   )
 }

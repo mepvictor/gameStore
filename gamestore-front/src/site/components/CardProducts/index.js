@@ -7,7 +7,8 @@ export default function CardProducts ({ handleDetail, products }) {
   return (
     <Grid container style={{ display: 'flex', justifyContent: 'flex-start'}}>
         {products.map((p, i) => (
-            <Card sx={{ width: 100, height: 220 }} key={i} style={{ display: 'flex', flex: 1, flexDirection: 'row', textAlign: 'center', alignItems: 'center', backgroundColor: '#FFF', padding: '0px 50px', borderRadius: 5, margin: 15}}>
+          <Grid item lg={4} key={i}>
+            <Card sx={{ maxWidth: 300, height: 220 }} key={i} style={{ display: 'flex', flex: 1, flexDirection: 'row', textAlign: 'center', alignItems: 'center', backgroundColor: '#FFF', padding: '0px 50px', borderRadius: 5, margin: 15}}>
                 <div style={{  marginLeft: -30}}>
                   <img src={p.product_image} alt={p.product_desc} width={120} height={120} />
                 </div>
@@ -17,6 +18,7 @@ export default function CardProducts ({ handleDetail, products }) {
                   <Button variant="contained" color='secondary' style={{ marginTop: 20 }} onClick={() => handleDetail(p._id.$oid)}>Ver detalhes</Button>
                 </div>  
             </Card>
+          </Grid>
 
         ))}
     </Grid>
