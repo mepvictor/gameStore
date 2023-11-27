@@ -39,14 +39,14 @@ const ProductDetail = () => {
   }
 
   const calculatePrice = () => {
-    return `${Math.round(price) / 10},00`
+    return `${Math.round(price / 10)}.00`
   }
 
   const calculateDiscount = () => {
     console.log(price);
     const discount = price * 0.05
     console.log(discount);
-    return `${Math.round(price - discount)},00`
+    return `${Math.round(price - discount)}.00`
   }
 
   const handleAddCart = () => {
@@ -77,7 +77,7 @@ const ProductDetail = () => {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', marginLeft: 80 }}>
               <span style={{ color: '#FFF', fontSize: 28, fontWeight: 'bold' }}>{name}</span>
-              <span style={{ color: '#f15a28', fontSize: 28, fontWeight: 'bold', marginTop: 20 }}>Por: R$ {price},00</span>
+              <span style={{ color: '#f15a28', fontSize: 28, fontWeight: 'bold', marginTop: 20 }}>Por: R$ {price}</span>
               <span style={{ color: '#FFF', fontSize: 28, fontWeight: 'bold', marginTop: 20 }}>Ou 10x de R$ {calculatePrice()} sem tarifa</span>
               <span style={{ color: '#4CBD49', fontSize: 28, fontWeight: 'bold', marginTop: 20 }}>R${calculateDiscount()}
                 <span style={{ color: '#FFF', fontSize: 22, fontWeight: 'bold' }}> à vista com desconto</span>
